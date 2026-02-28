@@ -1,0 +1,28 @@
+version: '3.8'
+
+services:
+  web:
+    build:
+      context: ./web
+    container_name: quipux-web
+    ports:
+      - "8080:80"
+    volumes:
+      - ./web/quipux-comunitario:/var/www/html
+    depends_on:
+      - db
+
+  db:
+    image: postgres:10
+    container_name: quipux-db
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - "5433:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./init-db:/docker-entrypoint-initdb.d
+
+volumes:
+  postgres_data:
