@@ -97,9 +97,9 @@ switch ($opcion) {
             ($radicado["estado"]==9 and $_SESSION["perm_tramitar_docs_ciudadano"]==1 and $_SESSION["inst_codi"]==$radicado["inst_actu"])) {
             $sql = "update radicado set radi_permiso=$dato where radi_nume_radi=$radi_nume";
             if($db->conn->Execute($sql)) {
-                $nomb[0] = "Público";
+                $nomb[0] = "Interno";
                 $nomb[1] = "Confidencial";
-
+                $nomb[2] = "Publico";
                 $observa = "Cambió el nivel de seguridad del documento de ".$nomb[$radicado["seguridad"]]." a ".$nomb[$dato];
                 $Historico->insertarHistorico($radi_nume, $_SESSION["usua_codi"], $_SESSION["usua_codi"], $observa, 11);
             }

@@ -11,8 +11,7 @@ $area = ObtenerDatosDependencia($_SESSION["depe_codi"],$db);
 //documento traspaso fisico.
 if (isset($_GET['verrad'])){
     $radi_nume = $_GET['verrad'];
-    echo $radi_nume;
-    exit;
+
     $hist_codi = $_GET['hist_codi'];
     if ($radi_nume=='')
         $radi_nume=0;
@@ -24,9 +23,9 @@ if (isset($_GET['verrad'])){
     $datosRad = ObtenerDatosRadicado($radi_nume, $db);
     //informacion del documento
     //-------------------------
-    $noDocumento        = $datosRad['radi_nume_text'];//numero documento    
+    $noDocumento        = $datosRad['radi_nume_text'];//numero documento
     $noReferencia       = $datosRad['radi_nume_asoc'];//radi de referencia
-    //obtener referencia    
+    //obtener referencia
     $noReferenciaTxt = $datosRad['radi_referencia'];//numero de referencia
     if ($noReferenciaTxt==''){
         $datosRefe = ObtenerDatosRadicado($noReferencia, $db);
@@ -37,7 +36,7 @@ if (isset($_GET['verrad'])){
     //remitente
     $cod_remitente      = str_replace('-','',$datosRad['usua_rem']);//codigo remitente
     $datosRemitente     = ObtenerDatosUsuario($cod_remitente,$db);
-    $remitente          = $datosRemitente['nombre'];    
+    $remitente          = $datosRemitente['nombre'];
     $asunto             = $datosRad['radi_asunto'];//asunto
     //registrado por
     $cod_registradoPor  = $datosRad['usua_radi'];//registrado por
@@ -46,7 +45,7 @@ if (isset($_GET['verrad'])){
     $registradoPor      = $datosRegistradoPor['nombre'];
     $fecha_creacion     = substr($datosRad['fecha_radicado'],0,16);//fecha de creacion
     //obtener fecha envio 19 envio manual del documento
-    $radi_nume_padre        = $datosRad['radi_nume_temp'];//numero documento   
+    $radi_nume_padre        = $datosRad['radi_nume_temp'];//numero documento
 
     $sql = "SELECT hist_fech AS fecha_envio 
         FROM hist_eventos 
@@ -56,11 +55,11 @@ if (isset($_GET['verrad'])){
     $params = array($radi_nume_padre);
     $rs = $db->conn->Execute($sql, $params);
 
-    
+
     $fecha_envio = $rs->fields['FECHA_ENVIO'];
     if ($fecha_envio==''){
         //envio electronico
-        
+
         $sql = "SELECT hist_fech AS fecha_envio 
         FROM hist_eventos 
         WHERE radi_nume_radi = ? 
@@ -72,7 +71,7 @@ if (isset($_GET['verrad'])){
 
         $fecha_envio = $rs->fields['FECHA_ENVIO'];
         if ($fecha_envio==''){
-            
+
             $sql = "SELECT hist_fech AS fecha_envio 
                     FROM hist_eventos 
                     WHERE radi_nume_radi = ? 
@@ -81,7 +80,7 @@ if (isset($_GET['verrad'])){
             $params = array($radi_nume_padre, 65);
             $rs = $db->conn->Execute($sql, $params);
 
-            
+
 
         $rs = $db->query($sql);
         $fecha_envio = $rs->fields['FECHA_ENVIO'];
@@ -95,7 +94,7 @@ if (isset($_GET['verrad'])){
                  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
                 </head>
                 <body style="margin: 5 20 30 5;">';
-    $tituloDocumento = 
+    $tituloDocumento =
     '<br>
 	<table align="center">
 		<b><tr><th align="center"><font size="6">Traspaso de documentos físicos</th></tr></b>
@@ -147,12 +146,12 @@ if (isset($_GET['verrad'])){
         </tr>
         </table>';
     $informacion = $subtitulo.$tablaInformacion;
-    
-    
+
+
     //obtiene codigo del que recibe
     //echo $radi_nume."<br>";
     //Select para desplegar desde historico
-    $rs_query_aux=""
+    $rs_query_aux="";
     if (isset($_GET['hist_codi'])){
         $sql = "SELECT 
                 usua_codi_dest AS recibidopor,
@@ -167,7 +166,7 @@ if (isset($_GET['verrad'])){
         $rs = $db->conn->Execute($sql, $params);
         $rs_query_aux=$rs;
     }else{
-        
+
         // Cuando es nuevo
         $sqlmax = "SELECT MAX(hist_codi) AS hist_codi 
                 FROM hist_eventos 
@@ -189,23 +188,23 @@ if (isset($_GET['verrad'])){
             $rs = $db->conn->Execute($sql, $params);
             $rs_query_aux=$rs;
         }else{
-            $rs_query_aux=""
+            $rs_query_aux="";
         }
     }
     //echo "Final: ".$sql."<br>";
     $rs=$rs_query_aux;
 
     $codRecibidoPor     = $rs->fields['RECIBIDOPOR'];
-    $fecha_entrega      = substr($rs->fields['HIST_FECH'],0,16);    
+    $fecha_entrega      = substr($rs->fields['HIST_FECH'],0,16);
     $datosRecibidoPor   = array();
     $datosRecibidoPor   = ObtenerDatosUsuario($codRecibidoPor,$db);
-    $recibidoPor        = $datosRecibidoPor['nombre'];    
+    $recibidoPor        = $datosRecibidoPor['nombre'];
     $nombreAreaA        = $datosRecibidoPor["dependencia"];
     $codEnviadoPor      = $rs->fields['ENVIADOPOR'];
     //echo $codEnviadoPor;
     $datosEnviadoPor    = array();
     $datosEnviadoPor    = ObtenerDatosUsuario($codEnviadoPor,$db);
-    $enviadoPor         = $datosEnviadoPor['nombre'];    
+    $enviadoPor         = $datosEnviadoPor['nombre'];
     $nombreAreaE        = $datosEnviadoPor["dependencia"];
     $observacion        = $rs->fields['COMENTARIO'];
     //tabla informacion de traspaso
@@ -215,12 +214,12 @@ if (isset($_GET['verrad'])){
     $responsableTraslado = $datosEnvio['responsable'];
     $responsableTraslado=formatear_datos_documento($responsableTraslado);
     $estado = $datosEnvio['estado'];
-        
+
      if(strlen($observacion) > 70) {  // comprobamos que el texto tiene mas de 70 caracteres
-        $pos = strpos($observacion, "/");        
+        $pos = strpos($observacion, "/");
         $observacion = substr($observacion,0,$pos);
         $observacionJustificado = formatear_datos_documento($observacion);
-        $observacionJustificado = wordwrap($observacion,70,"<br />\n",true);        
+        $observacionJustificado = wordwrap($observacion,70,"<br />\n",true);
         }
     else{
         $pos = strpos($observacion, "/");
@@ -230,27 +229,27 @@ if (isset($_GET['verrad'])){
     }
     if ($observacionJustificado=='')
         $observacionJustificado='';
-    
+
     if ($estado == 'B')
         $estadoDesc = 'Bueno';
     elseif ($estado=='M')
         $estadoDesc = 'Malo';
     elseif ($estado=='R')
         $estadoDesc = 'Regular';
-   
+
     if ($estado=='')
         if (isset($_GET['estado']))
        $estadoDesc=$_GET['estado'];
-     
+
     $subtituloInf=
     '<table width="100%" >
         <tr>
             <td>Información del traspaso</td>
         </tr>
     </table>';
-    
-    
-   
+
+
+
     $tablaTraspaso=
     '<table border="1" width="100%" >
         <tr>
@@ -305,9 +304,9 @@ if (isset($_GET['verrad'])){
     </tr>
      </table>';
      $traspaso = $subtituloInf.$tablaTraspaso;
-     
+
      $doc_pdf = $cabecerapdf.$tituloDocumento.$informacion.$traspaso.$firmas.$piepdf;
-     
+
      //echo $doc_pdf;
      enviarPdf($ruta_raiz,$area["plantilla"],$doc_pdf,$servidor_pdf);
 }
@@ -353,7 +352,7 @@ function formatear_datos_documento($texto, $case="",$tipo=2) {
                 $texto = str_ireplace($origen, $destino, $cadena);
             }
         }
-      
+
         // Cambiamos letras con tildes a formato html
         $origen  = array ("á", "é", "í", "ó", "ú", "à", "è", "ì", "ò", "ù", "ä", "ë", "ï", "ö", "ü"
                         , "â", "ê", "î", "ô", "û", "ã", "õ", "ñ", "ç"
@@ -370,12 +369,12 @@ function formatear_datos_documento($texto, $case="",$tipo=2) {
                         , "&Acirc;", "&Ecirc;", "&Icirc;", "&Ocirc;", "&Ucirc;"
                         , "&Atilde;", "&Otilde;", "&Ntilde;", "&Ccedil;","&");
         $texto = str_ireplace($destino, $origen, $texto);
-       
+
         if ($tipo==2){
-                
+
         $ree_text=array('prime;','&prime');
-        $texto = str_replace($ree_text, '', $texto);        
-        
+        $texto = str_replace($ree_text, '', $texto);
+
         $car_especial = array('prime;','&prime','/','(',')','=','{','}','amp;','*','+','-','¬','|');
         $texto = str_replace($car_especial, "", $texto);
         }

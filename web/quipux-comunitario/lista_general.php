@@ -268,8 +268,9 @@ if ($_SESSION["tipo_usuario"]==1) { // Si no es ciudadano
             <span id="span_nivel_seguridad"></span>&nbsp;
             <img src="<?=$ruta_raiz?>/imagenes/internas/pencil_add.png" onclick='modificar_opcion_mostrar("nivel_seguridad",2);' id="img_nivel_seguridad" align="middle" border="0" title="Modifica el nivel de seguridad del documento" alt="editar">
             <select name="txt_nivel_seguridad" class="select"  id="txt_nivel_seguridad" style="display:none;" onchange='modificar_opcion("nivel_seguridad")'>
-                <option value="0" <?if($datosrad["seguridad"]==0) echo "selected"?>>P&uacute;blico</option>
+                <option value="0" <?if($datosrad["seguridad"]==0) echo "selected"?>>Interno</option>
                 <option value="1" <?if($datosrad["seguridad"]==1) echo "selected"?>>Confidencial</option>
+                <option value="2" <?if($datosrad["seguridad"]==2) echo "selected"?>>P&uacute;blico</option>
             </select>
 <?
             if ($nivel_seguridad_documento >= 6)
