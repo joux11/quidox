@@ -10,7 +10,7 @@ include_once "$ruta_raiz/config_title.php";
   <title>.::<?=$institucionSigla?>::.</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  
+
   <link rel="stylesheet" href="estilos/navbar.css">
   
   <script src="jsindex/jquery.min.js"></script>

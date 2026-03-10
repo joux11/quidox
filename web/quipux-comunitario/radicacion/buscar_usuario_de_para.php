@@ -69,7 +69,7 @@ $usuarios_eliminados = substr($usuarios_eliminados,1);
                 //$boton="<a class=vinculos href=javascript:borrarCCA(".$usr["usua_codi"].",'$tip')>Borrar</a>";
                 $boton = "<input class='botones_azul' title='Borrar' type='button' value='Borrar' onClick=\"borrarCCA(".$usr["usua_codi"].",'$tip');\">";
                 if ($usr["tipo_usuario"]==1) {
-                    $tipo_usr = "<i>(Serv.)</i>";
+                    $tipo_usr = "<i>(Empl.)</i>";
                 } else {
                     $tipo_usr = "<i>(Ciu.)</i>";
                     if (($_SESSION["usua_admin_sistema"]==1 or $_SESSION["usua_perm_ciudadano"]==1) and $usr["inst_codi"]==0)

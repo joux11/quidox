@@ -400,7 +400,7 @@ function lista_general_lista_usuarios($radicado, $usuario, $estado, $tipo, $db,$
                 }
                 
                 if ($usr["tipo_usuario"]==1)
-                    $cadena .= "<i>(Serv.)&nbsp;</i>";
+                    $cadena .= "<i>(Empl.)&nbsp;</i>";
                 else
                     $cadena .= "<i>(Ciu.)&nbsp;</i>";
                 
@@ -427,7 +427,7 @@ function lista_general_lista_usuarios($radicado, $usuario, $estado, $tipo, $db,$
 //            if (trim($cargo)== "")
             $cargo = $rs->fields["USUA_CARGO"];
             if (trim($rs->fields["USUA_AREA"])=='' or trim($rs->fields["INST_CODI"])=='0' or trim($rs->fields["INST_CODI"])=='1')
-                $cadena .= "<i>(Ciu.)&nbsp;</i>"; else $cadena .= "<i>(Serv.)&nbsp;</i>";
+                $cadena .= "<i>(Ciu.)&nbsp;</i>"; else $cadena .= "<i>(Empl.)&nbsp;</i>";
             $cadena .= $rs->fields["USUA_ABR_TITULO"]." ".$rs->fields["USUA_NOMBRE"]." ".$rs->fields["USUA_APELLIDO"];
             $cadena .= ", $cargo, ".$rs->fields["USUA_INSTITUCION"]."<br/>";
             $rs->MoveNext();

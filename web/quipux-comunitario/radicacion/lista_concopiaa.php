@@ -95,7 +95,7 @@ include_once "usuarios_lista_modificada.php";
                 if (trim($tmp)!=""){
                 $usr = ObtenerDatosUsuario(limpiar_numero(trim($tmp)),$db);
                 if ($usr["tipo_usuario"]==1) {
-                    $tipo_usr = "<i>(Serv.)</i>";
+                    $tipo_usr = "<i>(Empl.)</i>";
                 } else {
                     $tipo_usr = "<i>(Ciu.)</i>";
                     if (($_SESSION["usua_admin_sistema"]==1 or $_SESSION["usua_perm_ciudadano"]==1) and $usr["inst_codi"]==0)

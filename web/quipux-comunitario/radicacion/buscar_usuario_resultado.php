@@ -125,7 +125,7 @@ if ($sql!="") {
             $sigla_institucion = "";
 ?>
     <tr onmouseover="this.style.background='#e3e8ec'" onmouseout="this.style.background='white', this.style.color='black'">
-        <td><font size=1><? if ($rs->fields["TIPO_USUARIO"]==1) echo "<i>(Serv.)</i>"; else echo "<i>(Ciu.)</i>"; ?></font></td>
+        <td><font size=1><? if ($rs->fields["TIPO_USUARIO"]==1) echo "<i>(Empl.)</i>"; else echo "<i>(Ciu.)</i>"; ?></font></td>
         <td><font size=1><?=substr($rs->fields["USUA_NOMBRE"],0,120).$sigla_institucion ?></font></td>
         <td><font size=1><?=substr($rs->fields["INST_NOMBRE"],0,100) ?></font></td>
         <td><font size=1><?=substr($rs->fields["USUA_TITULO"],0,70) ?></font></td>

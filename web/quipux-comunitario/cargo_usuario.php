@@ -42,7 +42,7 @@ if ($rs and !$rs->EOF)
             $seleccion = 'selected';
         else
             $seleccion = "";
-        $tipo_usuario = ($rs->fields["TIPO_USUARIO"]==1) ? "<i>(Serv.) </i>" : "<i>(Ciu.) </i>";
+        $tipo_usuario = ($rs->fields["TIPO_USUARIO"]==1) ? "<i>(Empl.) </i>" : "<i>(Ciu.) </i>";
 
         $cargoCombo .= "<option value='".$rs->fields["USUA_CODI"]."' $seleccion>
                             ".$tipo_usuario . $rs->fields["USUA_NOMBRE"]."

@@ -618,7 +618,7 @@ switch ($codTx)
             $menu_lista  = $rs_lista->GetMenu2("slc_lista[]", 0, false, true, 8," id='slc_lista' class='select' style='height:85px;'" );            
             $accion = "<table width='100%' border='0' cellspacing='1' class='borde_tab_blanco'>";
             $accion .= "<tr class='titulos4'><td colspan='4'><center>Acci&oacute;n: Informar Documentos</center></td></tr>";
-            $accion .= "<tr><td>Área:</td><td>&nbsp;</td><td>Servidor Público:</td><td>&nbsp;</td></tr>";
+            $accion .= "<tr><td>Área:</td><td>&nbsp;</td><td>Empleado:</td><td>&nbsp;</td></tr>";
             $accion .= "<tr><td colspan=2>$menu_area</td><td colspan=2><div name='mnu_usr' id='mnu_usr'>$menu_usr</div></td></tr>
                         <tr><td colspan=4><hr></td></tr>
                         <table width='100%' border='0' cellspacing='1' class='borde_tab_blanco'>

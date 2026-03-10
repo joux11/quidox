@@ -115,8 +115,8 @@ function html_encabezado () {
     $texto = "<div id='header'><div class='shad-r'><div class='shad-l'><div class='moduletable'>
                 <table width='100%' cellpadding='0' cellspacing='0' >
                     <tr>
-                        <td width='18%'><img alt='Escudo' src='$ruta_raiz/imagenes/logo_ing2.png' height='80' width='150'></td>
-                        <td width='52%'><h2><b>Cooperativa de Ahorro y Crédito Educadores de Pastaza</b></h2></td>
+                        <td width='18%' style='text-align: center'><img alt='Escudo' src='$ruta_raiz/imagenes/logo_ing2.png' height='70' width='120'></td>
+                        <td width='52%'><h2>Cooperativa de Ahorro y Crédito Educadores de Pastaza</h2></td>
                         <td  width='30%'><div id='nav-big'>
                            <ul><table align='right'>
                                 <tr><td><li class='active_menu'><a href='' class='b6' onclick='ver_ayuda()'></a></li></td></tr>
@@ -143,8 +143,7 @@ function html_pie_pagina () {
                     <tr>
                         <td align='center'>
                             <center>
-                                <h3>Subsecretar&iacute;a de Gobierno Electr&oacute;nico y Registro Civil
-                                - Ministerio de Telecomunicaciones y de la Sociedad de la Información</h3>
+                                <h3>Cooperativa de Ahorro y Crédito Educadores de Pastaza Ltda. CACEP - 2026</h3>
                             </center>
                         </td>
                     </tr>
