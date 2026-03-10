@@ -642,7 +642,7 @@ function mostrar_applet_firma_digital($radicados,$token='',$ejecucion=0,$numdocs
 
 	$rs = $this->db->conn->Execute("select usua_tipo_certificado from usuarios where usua_codi=".$_SESSION["usua_codi"]);
 
-    	$tipo_certificado = $rs->fields["USUA_TIPO_CERTIFICADO"];
+    $tipo_certificado = $rs->fields["USUA_TIPO_CERTIFICADO"];
 	$documentos="";
 	$nombre='"nombre"';
 	$documento='"documento"';
@@ -688,12 +688,14 @@ function mostrar_applet_firma_digital($radicados,$token='',$ejecucion=0,$numdocs
         $jsondocumentos = ',"'."documentos".'":';
         //forma json final
         $body = '{'.$jsoncedula.$cedula.','.$jsonsistema.$sistema.$jsondocumentos.$documentosjson.'}';
+
         //$body = "'$body;
         $docstxt.= $radi_nume_text.",";
         //CONSUMO DE SERVICIO WEB RES
         $urlws = $swEnvioArchivoFirmaConfig;
         // ------------------------------------------------------------
         $headers = array("Content-Type: application/json", "X-API-KEY: $api_key_token");
+
         $curl = curl_init();
         curl_setopt($curl, CURLOPT_URL, $urlws);
         curl_setopt($curl, CURLOPT_POST, true);
@@ -702,8 +704,7 @@ function mostrar_applet_firma_digital($radicados,$token='',$ejecucion=0,$numdocs
         curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
         $token = curl_exec($curl);
         curl_close($curl);
-        
-// ------------------------------------------------------------------
+       // ------------------------------------------------------------------
     echo "<div id='div_firmar_doc' ></div>";
     echo "<div id='div_applet'></div>";
     $pos = strpos($token, 'Error');

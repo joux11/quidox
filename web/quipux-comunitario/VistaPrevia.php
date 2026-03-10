@@ -78,7 +78,7 @@
     //$path_descarga = "$ruta_raiz/archivo_descargar.php?path_arch=$archivo&nomb_arch=$nombre_archivo";
 
 /*include_once "./interconexion/wsCliente.php";
-$ok=ws_envio_radicado("1711311074", "Prueba ws3", "prueba.pdf", $archivo);
+
 var_dump($ok);
 
 include_once "./interconexion/wsCliente2.php";

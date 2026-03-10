@@ -1,0 +1,62 @@
+version: "3.9"
+
+services:
+  db:
+    image: postgres:12-alpine
+    container_name: firmaec_db
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: firmadigital
+      POSTGRES_USER: firmadigital
+      POSTGRES_PASSWORD: firmadigital
+    ports:
+      - "5434:5432"   # ✅ 5434 para no chocar con Quipux (que ya usa 5433)
+    volumes:
+      - postgres_firmaec:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U firmadigital -d firmadigital"]
+      interval: 10s
+      timeout: 5s
+      retries: 20
+    networks:
+      - firmaec_net
+
+  wildfly:
+    build:
+      context: ./wildfly
+      args:
+        FIRMADIGITAL_LIBRERIA_REF: "3.1.2"
+        FIRMADIGITAL_SERVICIO_REF: "3.1.2"
+        FIRMADIGITAL_API_REF: "master"
+        PG_JDBC_VERSION: "42.7.4"
+    container_name: firmaec_wildfly
+    restart: unless-stopped
+    depends_on:
+      db:
+        condition: service_healthy
+    ports:
+      - "8080:8080"   # ✅ FirmaEC/WildFly
+      - "9991:9990"   # ✅ Admin console
+    environment:
+
+      JAVA_OPTS: "-Dfirmadigital-servicio.url=http://localhost:8080/servicio"
+      # ✅ OJO: usar el nombre del servicio "db" (DNS de compose)
+      DB_HOST: db
+      DB_PORT: "5432"
+      DB_NAME: firmadigital
+      DB_USER: firmadigital
+      DB_PASS: firmadigital
+
+      # Admin WildFly (opcional)
+      WILDFLY_ADMIN_USER: admin
+      WILDFLY_ADMIN_PASS: admin
+    networks:
+      - firmaec_net
+
+volumes:
+  postgres_firmaec:
+
+networks:
+  firmaec_net:
+    name: firmaec_net
+    driver: bridge

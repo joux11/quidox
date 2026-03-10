@@ -35,7 +35,7 @@ if ($anex_codigo == "" and $radi_nume == "")
 if ($anex_codigo != "") {
     $rs_arch = $db->query("select arch_codi, arch_codi_firma, anex_nombre, anex_path, anex_radi_nume from anexos where anex_codigo='$anex_codigo'");
     if (!$rs_arch or $rs_arch->EOF)
-        die("<script>alert('Lo sentimos, no se encontró el archivo solicitado.');</script>");
+        die("<script>alert('Lo sentimos, no se encontró el archivo solicitado. XD');</script>");
 
     // Formateamos el nombre del archivo
     $arch_nombre = str_replace(" ", "_", strtolower($rs_arch->fields["ANEX_NOMBRE"]));
@@ -62,7 +62,7 @@ if ($anex_codigo != "") {
     // Verificamos si exite el anexo
     $rs_arch = $db->query("select arch_codi, arch_codi_firma, radi_nume_text, radi_path from radicado where radi_nume_radi=$radi_nume");
     if (!$rs_arch or $rs_arch->EOF)
-        die("<script>alert('Lo sentimos, no se encontró el archivo solicitado.');</script>");
+        die("<script>alert('Lo sentimos, no se encontró el archivo solicitado. XD2');</script>");
 
     // Formateamos el nombre del archivo
     $arch_path   = trim($rs_arch->fields["RADI_PATH"]);
@@ -96,7 +96,7 @@ if ($arch_codi > 0) {
     if (!is_file($arch_path)) {
         $rs_bodega = $db_bodega->query("select func_recuperar_archivo($arch_codi) as archivo");
         if (!$rs_bodega or $rs_bodega->EOF or $rs_bodega->fields["ARCHIVO"]=='')
-            die("<script>alert('Lo sentimos, no se pudo descargar el archivo solicitado.');</script>");
+            die("<script>alert('Lo sentimos, no se pudo descargar el archivo solicitado. XD3');</script>");
         file_put_contents($arch_path, base64_decode($rs_bodega->fields["ARCHIVO"]));
         $tamanio = strlen($rs_bodega->fields["ARCHIVO"])/8*6;
     } else {
@@ -105,10 +105,10 @@ if ($arch_codi > 0) {
 } elseif ($arch_path != "") {
     $arch_path = "$ruta_raiz/bodega$arch_path";
     if (!is_file($arch_path))
-        die("<script>alert('Lo sentimos, no se pudo descargar el archivo solicitado.');</script>");
+        die("<script>alert('Lo sentimos, no se pudo descargar el archivo solicitado. XD4');</script>");
     $tamanio = filesize($arch_path);
 } else {
-    die("<script>alert('Lo sentimos, no se pudo descargar el archivo solicitado.1');</script>");
+    die("<script>alert('Lo sentimos, no se pudo descargar el archivo solicitado.1 XD5');</script>");
 }
 
 if (substr($tipo_descarga,0,7) == "embeded") {

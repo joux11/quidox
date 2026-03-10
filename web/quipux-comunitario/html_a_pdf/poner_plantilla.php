@@ -41,11 +41,11 @@ class PDF extends FPDI {
             $this->useTemplate($this->_plantilla_pdf_borr);
         $this->SetY(42);	//Posición 45 mm abajo del filo superior de la pagina
         $this->SetFont($this->tipo_letra, $this->tipo_letra_estilo, 12);	   //fuente del texto
-        $this->Cell(170,26,$this->numero_docu,0,0,'R');
+        $this->Cell(175.5,26,$this->numero_docu,0,0,'R');
         //fecha del documento
         $this->SetY(40);	  //Posición 40 mm abajo del filo superior de la pagina
         $this->SetFont($this->tipo_letra, "", 12);	   //fuente del texto /* */
-        $this->Cell(170,20,$this->fecha_docu,0,0,'R');	   //numero de documento
+        $this->Cell(175.5,20,$this->fecha_docu,0,0,'R');	   //numero de documento
 
     }
 

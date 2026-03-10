@@ -78,7 +78,7 @@
     
     <service name="soapapihtml_a_pdfService">
         <port name="soapapihtml_a_pdfPort" binding="typens:soapapihtml_a_pdfBinding">
-		<soap:address location="http://host.docker.internal:8080/html_a_pdf/html_a_pdf.php"/>
+		<soap:address location="http://host.docker.internal:8081/html_a_pdf/html_a_pdf.php"/>
         </port>
     </service>
 </definitions>

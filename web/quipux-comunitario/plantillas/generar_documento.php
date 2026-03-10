@@ -47,7 +47,7 @@ class GenerarDocumento {
     var $datos_doc_destinatario = ""; //Datos de los destinatarios
     var $datos_doc_destinatario_lista = ""; //En caso que se envíe a una lista
     var $datos_doc_destinatario_al_pie = ""; // en caso que el destinatario deba ir al final del documento
-    var $datos_doc_lugar_destinatario = "En su Despacho"; //En su despacho, Ciudad, Presente, etc.
+    var $datos_doc_lugar_destinatario = "Presente.-"; //En su despacho, Ciudad, Presente, etc.
     var $datos_doc_remitente = ""; //Datos del Remitente
     var $datos_doc_asunto = "";
     var $datos_doc_cuerpo = "";
@@ -89,7 +89,7 @@ class GenerarDocumento {
         $this->datos_doc_destinatario = ""; //Datos de los destinatarios
         $this->datos_doc_destinatario_lista = ""; //En caso que se envíe a una lista
         $this->datos_doc_destinatario_al_pie = ""; // en caso que el destinatario deba ir al final del documento
-        $this->datos_doc_lugar_destinatario = "En su Despacho"; //En su despacho, Ciudad, Presente, etc.
+        $this->datos_doc_lugar_destinatario = "Presente. -"; //En su despacho, Ciudad, Presente, etc.
         $this->datos_doc_remitente = ""; //Datos del Remitente
         $this->datos_doc_asunto = "";
         $this->datos_doc_cuerpo = "";
@@ -258,7 +258,8 @@ class GenerarDocumento {
         if($this->registro_padre["estado"]=="1" or $this->registro_padre["estado"]=="7" )
             $this->fecha_documento = date("d-m-Y");
         else
-            $this->fecha_documento = $gen_fecha->traducefecha($this->registro_padre["radi_fecha"]);
+            //$this->fecha_documento = $gen_fecha->traducefecha($this->registro_padre["radi_fecha"]);
+            $this->fecha_documento = date("d-m-Y", strtotime($this->registro_padre["radi_fecha"]));
         $this->fecha_documento = trim($this->remitente[0]["usua_ciudad"]).", ".$this->fecha_documento;
 
         // Verificamos si firma digitalmente el archivo

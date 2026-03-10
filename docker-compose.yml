@@ -6,7 +6,7 @@ services:
       context: ./web
     container_name: quipux-web
     ports:
-      - "8080:80"
+      - "8081:80"
     volumes:
       - ./web/quipux-comunitario:/var/www/html
     depends_on:

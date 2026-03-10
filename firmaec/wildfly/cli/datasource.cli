@@ -1,0 +1,40 @@
+# 1) Crear módulo SOLO si no existe
+if (outcome != success) of /module=org.postgresql:read-resource()
+  module add \
+    --name=org.postgresql \
+    --resources=/opt/jdbc/postgresql.jar \
+    --dependencies=javax.api,javax.transaction.api
+end-if
+
+# 2) Registrar driver SOLO si no existe
+if (outcome != success) of /subsystem=datasources/jdbc-driver=postgresql:read-resource()
+  /subsystem=datasources/jdbc-driver=postgresql:add( \
+    driver-name=postgresql, \
+    driver-module-name=org.postgresql, \
+    driver-class-name=org.postgresql.Driver \
+  )
+end-if
+
+# 3) Datasource principal (JNDI 1)
+if (outcome != success) of /subsystem=datasources/data-source=FirmaDigitalDS:read-resource()
+  data-source add \
+    --name=FirmaDigitalDS \
+    --jndi-name=java:/jdbc/FirmaDigitalDS \
+    --driver-name=postgresql \
+    --connection-url=jdbc:postgresql://${env.DB_HOST}:${env.DB_PORT}/${env.DB_NAME} \
+    --user-name=${env.DB_USER} \
+    --password=${env.DB_PASS} \
+    --enabled=true
+end-if
+
+# 4) Datasource alias común (JNDI 2)
+if (outcome != success) of /subsystem=datasources/data-source=FirmaDigitalDS2:read-resource()
+  data-source add \
+    --name=FirmaDigitalDS2 \
+    --jndi-name=java:/jboss/datasources/FirmaDigitalDS \
+    --driver-name=postgresql \
+    --connection-url=jdbc:postgresql://${env.DB_HOST}:${env.DB_PORT}/${env.DB_NAME} \
+    --user-name=${env.DB_USER} \
+    --password=${env.DB_PASS} \
+    --enabled=true
+end-if

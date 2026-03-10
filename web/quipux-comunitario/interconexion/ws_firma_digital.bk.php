@@ -1,19 +1,75 @@
 <?php
+/**  Programa para el manejo de gestion documental, oficios, memorandus, circulares, acuerdos
+*    Desarrollado y en otros Modificado por la SubSecretaría de Informática del Ecuador
+*    Quipux    www.gestiondocumental.gov.ec
+*------------------------------------------------------------------------------
+*    This program is free software: you can redistribute it and/or modify
+*    it under the terms of the GNU Affero General Public License as
+*    published by the Free Software Foundation, either version 3 of the
+*    License, or (at your option) any later version.
+*    This program is distributed in the hope that it will be useful,
+*    but WITHOUT ANY WARRANTY; without even the implied warranty of
+*    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+*    GNU Affero General Public License for more details.
+*
+*    You should have received a copy of the GNU Affero General Public License
+*    along with this program.  If not, see http://www.gnu.org/licenses. 
+*------------------------------------------------------------------------------
+**/
 
 include "../config.php";
 
 function grabar_archivos_firmados($usuario, $nombre_doc, $archivo,$datos_firmante,$fecha,$institucion,$cargo) {
 
-    return grabar_archivos_firmados_core(
-        $usuario,
-        $nombre_doc,
-        $archivo,
-        $datos_firmante,
-        $fecha,
-        $institucion,
-        $cargo,
-        false
-    );
+        $ruta_raiz = "..";
+        include_once "$ruta_raiz/funciones.php";
+        include_once "$ruta_raiz/obtenerdatos.php";
+        include_once "$ruta_raiz/include/db/ConnectionHandler.php";
+        include_once "$ruta_raiz/include/tx/Tx.php";
+        include_once "$ruta_raiz/include/tx/Firma_Digital.php";
+        $db = new ConnectionHandler($ruta_raiz);
+    	$db_bodega = new ConnectionHandler($ruta_raiz, "bodega");
+    	$tx = new Tx($db);
+//return $archivo;
+        $radicado = ObtenerDatosRadicado($nombre_doc, $db);
+	$usr = ObtenerDatosUsuario(str_replace("-", "",$radicado["usua_rem"]), $db);      
+	$archivo5=md5($archivo);
+	//$nombre_doc = limpiar_numero(trim($nombre_doc));
+
+        //$fecha_doc = date('Y-m-d');
+        $arch64 = base64_encode($archivo);
+        $archivo5 = md5($arch64);
+        //Grabar registro archivo
+        $fechadia = substr($fecha,0,2);
+        $fechames = substr($fecha,3,2);
+        $fechaanio = substr($fecha,6,4);
+        $fechahora = substr($fecha,11,8);
+        //COMPUESTA
+        //$fecha = "$fechaanio-$fechames-$fechadia $fechahora (GMT-5)";
+        $nombre = $datos_firmante;
+//$db->conn->Execute("insert into log_paginas_visitadas (pagina) values('nombredoc: $nombre_doc')");
+//$db->conn->Execute("insert into log_paginas_visitadas (pagina) values('archivo_firmado64: $arch64')");
+        //$datos_firmante = "<table><tr><th>Cédula</th><th>Nombre</th><th>Institución</th><th>Cargo</th><th>Fecha</th></tr>";
+        //$datos_firmante.= "<tr><td>$usuario</td><td>$nombre</td><td>$institucion</td><td>$cargo</td><td>$fecha</td></tr></table>";
+ $rs_archivo = $db_bodega->query("select func_grabar_archivo(E'$nombre_doc.pdf', E'$arch64') as arch_codi");
+
+    if (!$rs_archivo or $rs_archivo->EOF or (0+$rs_archivo->fields["ARCH_CODI"])==0)
+        return 0;
+    $arch_codi_firma = 0+$rs_archivo->fields["ARCH_CODI"];
+
+//$db->conn->Execute("insert into log_paginas_visitadas (pagina) values('fecha_doc: $fecha')");
+	$sql="update radicado set radi_fech_firma='$fecha',radi_tipo_archivo=1, radi_nomb_usua_firma = '$datos_firmante', arch_codi = $arch_codi_firma, arch_codi_firma=$arch_codi_firma where radi_nume_temp = $nombre_doc and (esta_codi=4 or esta_codi=3 or radi_nume_radi=$nombre_doc)";
+
+	$ok = $db->conn->Execute($sql);
+//$usr = ObtenerDatosUsuario(str_replace("-", "",$radicado["usua_rem"]), $db);
+//$db->conn->Execute("insert into log_paginas_visitadas (pagina) values('$sql')");
+$tx->insertarHistorico($nombre_doc, $usr["usua_codi"],  $usr["usua_codi"], "Documento Firmado Electrónicamente", 40);
+$respFirma = $tx->envioElectronicoDocumento($nombre_doc,  $usr["usua_codi"]);
+if (!$ok)
+          return 0;
+        else
+        return 1;
+
 }
 //Pongo old por edicion
 function grabar_archivos_firmados_old($usuario, $radi_nume, $archivo) {
@@ -108,112 +164,15 @@ $db->conn->Execute($sql);
 }
 
 
-function grabar_archivos_firmados_core($usuario, $nombre_doc, $archivo, $datos_firmante, $fecha, $institucion, $cargo, $archivoYaEsBase64 = false) {
-    $ruta_raiz = "..";
-    include_once "$ruta_raiz/funciones.php";
-    include_once "$ruta_raiz/obtenerdatos.php";
-    include_once "$ruta_raiz/include/db/ConnectionHandler.php";
-    include_once "$ruta_raiz/include/tx/Tx.php";
-    //include_once "$ruta_raiz/include/tx/Firma_Digital.php";
-    $db = new ConnectionHandler($ruta_raiz);
-    $db_bodega = new ConnectionHandler($ruta_raiz, "bodega");
-    $tx = new Tx($db);
-//return $archivo;
-    $radicado = ObtenerDatosRadicado($nombre_doc, $db);
-    $usr = ObtenerDatosUsuario(str_replace("-", "",$radicado["usua_rem"]), $db);
-
-    if ($archivoYaEsBase64) {
-        $arch64 = trim($archivo);
-        $binario = base64_decode($arch64, true);
-        if ($binario === false) {
-            return 0;
-        }
-    } else {
-        $binario = $archivo;
-        $arch64 = base64_encode($binario);
-    }
-
-    $archivo5 = md5($arch64);
-
-
-    //Grabar registro archivo
-    $fechadia = substr($fecha,0,2);
-    $fechames = substr($fecha,3,2);
-    $fechaanio = substr($fecha,6,4);
-    $fechahora = substr($fecha,11,8);
-    //COMPUESTA
-    //$fecha = "$fechaanio-$fechames-$fechadia $fechahora (GMT-5)";
-    //$nombre = $datos_firmante;
-//$db->conn->Execute("insert into log_paginas_visitadas (pagina) values('nombredoc: $nombre_doc')");
-//$db->conn->Execute("insert into log_paginas_visitadas (pagina) values('archivo_firmado64: $arch64')");
-    //$datos_firmante = "<table><tr><th>Cédula</th><th>Nombre</th><th>Institución</th><th>Cargo</th><th>Fecha</th></tr>";
-    //$datos_firmante.= "<tr><td>$usuario</td><td>$nombre</td><td>$institucion</td><td>$cargo</td><td>$fecha</td></tr></table>";
-    $rs_archivo = $db_bodega->query("select func_grabar_archivo(E'$nombre_doc.pdf', E'$arch64') as arch_codi");
-
-    if (!$rs_archivo or $rs_archivo->EOF or (0+$rs_archivo->fields["ARCH_CODI"])==0)
-        return 0;
-    $arch_codi_firma = 0+$rs_archivo->fields["ARCH_CODI"];
-
-//$db->conn->Execute("insert into log_paginas_visitadas (pagina) values('fecha_doc: $fecha')");
-    $sql="update radicado set radi_fech_firma='$fecha',radi_tipo_archivo=1, radi_nomb_usua_firma = '$datos_firmante', arch_codi = $arch_codi_firma, arch_codi_firma=$arch_codi_firma where radi_nume_temp = $nombre_doc and (esta_codi=4 or esta_codi=3 or radi_nume_radi=$nombre_doc)";
-
-    $ok = $db->conn->Execute($sql);
-//$usr = ObtenerDatosUsuario(str_replace("-", "",$radicado["usua_rem"]), $db);
-//$db->conn->Execute("insert into log_paginas_visitadas (pagina) values('$sql')");
-    $tx->insertarHistorico($nombre_doc, $usr["usua_codi"],  $usr["usua_codi"], "Documento Firmado Electrónicamente", 40);
-    $respFirma = $tx->envioElectronicoDocumento($nombre_doc,  $usr["usua_codi"]);
-    if (!$ok)
-        return 0;
-    else
-        return 1;
-}
-
-
-    $raw = file_get_contents('php://input');
-    $contentType = $_SERVER['CONTENT_TYPE'];
 
     // Averiguar ruta servidor
 
-
-    if (
-        stripos($contentType, 'application/json') !== false ||
-        (strlen($raw) > 0 && ($raw[0] === '{' || $raw[0] === '['))
-    ) {
-        $data = json_decode($raw, true);
-
-        if (!is_array($data)) {
-            http_response_code(400);
-            header('Content-Type: application/json');
-            echo json_encode(['ok' => false, 'mensaje' => 'JSON inválido']);
-            exit;
-        }
-        $datos_firmante=$data['certificado'][0]['nombre']." ".$data['certificado'][0]['apellido'];
-
-        $resultado = grabar_archivos_firmados_core(
-            $data['cedula'],
-            $data['nombreDocumento'],
-            $data['archivo'],
-            $datos_firmante,
-            $data['certificado'][0]['fechaFirma'],
-            "",
-            "",
-            true
-        );
-
-        header('Content-Type: text/plain; charset=utf-8');
-        if ($resultado == 1) {
-            echo 'OK';
-        } else {
-            echo 'ERROR';
-        }
-        exit;
-
-    }
     ini_set("soap.wsdl_cache_enabled", "0");
     $wsdl = __DIR__ . '/firma.wsdl';
     $sServer = new SoapServer($wsdl);
+    //  $sServer = new SoapServer($ruta_servidor);
     $sServer->addFunction("grabar_archivos_firmados");
-    $sServer->handle($raw);
+    $sServer->handle();
 
 
 

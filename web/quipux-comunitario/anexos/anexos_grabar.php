@@ -49,6 +49,7 @@ for ($file=0 ; $file<10 ; ++$file ) {
         $asociar_imagen = (isset ($_POST["chk_asociar_imagen_$file"])) ? (0 + $_POST["chk_asociar_imagen_$file"]) : 0;
 
         $archivo_path = limpiar_sql($_FILES["fil_archivo_nuevo_$file"]["tmp_name"]);
+
         $archivo_tamanio = 0+$_FILES["fil_archivo_nuevo_$file"]["size"];
         $archivo_nombre = trim(limpiar_sql($_FILES["fil_archivo_nuevo_$file"]["name"]));
 
@@ -89,7 +90,9 @@ for ($file=0 ; $file<10 ; ++$file ) {
         $archivo_codigo = $radi_nume."_".str_pad(($rs->fields["NUM"]),5,"0",STR_PAD_LEFT);
 
         // Grabo el archivo en la bodega
+
         $archivo_base64 = base64_encode(file_get_contents($archivo_path));
+
         $rs_archivo = $db_bodega->query("select func_grabar_archivo(E'$archivo_nombre', E'$archivo_base64') as arch_codi");
         $archivo_arch_codi = 0+$rs_archivo->fields["ARCH_CODI"];
         if ($archivo_arch_codi == 0) {

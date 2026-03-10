@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="JetClientState">
+    <option name="draftsState">
+      <draftsState>
+        <option name="requests">
+          <list>
+            <requestState>
+              <option name="body">
+                <bodyState>
+                  <option name="raw" value="{&quot;sistema&quot;:&quot;QUIPUX&quot;,&quot;cedula&quot;:&quot;1600560872&quot;,&quot;documentos&quot;:[{&quot;nombre&quot;:&quot;prueba.pdf&quot;,&quot;documento&quot;:&quot;JVBERi0xLjcKMyAwIG9iago8PC9UeXBlIC9QYWdlCi9QYXJlbnQgMSAwIFIKL01lZGlhQm94IFswIDAgNTk1LjAwIDg0Mi4wMF0KL1Jlc291cmNlcyAyIDAgUgovQ29udGVudHMgNCAwIFI+PgplbmRvYmoKNCAwIG9iago8PC9GaWx0ZXIgL0ZsYXRlRGVjb2RlIC9MZW5ndGggMTUyPj4Kc3RyZWFtCnicM9AzNVcoVzBQ8ALiLIXoWCCVAsTuQJzO5RSioO9mqGBopGdgoBCSpuAawlWITRAsZIQiZIDXYGyGENARSEABNreC1RqC9WTBFRYqGAKVABWBIIypByOSc7n0QwJ8DBVc8hUCgZYq4PGxsYIFsc4Hqjc1NdIzB9pooWdqqRCSohCtYahvqBmrEOKFZKApwsBALgBv91XmCmVuZHN0cmVhbQplbmRvYmoKMSAwIG9iago8PC9UeXBlIC9QYWdlcwovS2lkcyBbMyAwIFIgXQovQ291bnQgMQo+PgplbmRvYmoKNSAwIG9iago8PC9UeXBlIC9PQ0cgL05hbWUgKHByaW50KQovVXNhZ2UgPDwvUHJpbnQgPDwvUHJpbnRTdGF0ZSAvT04+PiAvVmlldyA8PC9WaWV3U3RhdGUgL09GRj4+Pj4+PgplbmRvYmoKNiAwIG9iago8PC9UeXBlIC9PQ0cgL05hbWUgKHZpZXcpCi9Vc2FnZSA8PC9QcmludCA8PC9QcmludFN0YXRlIC9PRkY+PiAvVmlldyA8PC9WaWV3U3RhdGUgL09OPj4+Pj4+CmVuZG9iago3IDAgb2JqCjw8L1R5cGUgL0ZvbnQKL0Jhc2VGb250IC9UaW1lcy1Sb21hbgovU3VidHlwZSAvVHlwZTEKL0VuY29kaW5nIC9XaW5BbnNpRW5jb2RpbmcKPj4KZW5kb2JqCjggMCBvYmoKPDwvVHlwZSAvRm9udAovQmFzZUZvbnQgL1RpbWVzLUJvbGQKL1N1YnR5cGUgL1R5cGUxCi9FbmNvZGluZyAvV2luQW5zaUVuY29kaW5nCj4+CmVuZG9iago5IDAgb2JqCjw8L1R5cGUgL0ZvbnQKL0Jhc2VGb250IC9IZWx2ZXRpY2EtT2JsaXF1ZQovU3VidHlwZSAvVHlwZTEKL0VuY29kaW5nIC9XaW5BbnNpRW5jb2RpbmcKPj4KZW5kb2JqCjEwIDAgb2JqCjw8L0ZpbHRlciAvRmxhdGVEZWNvZGUgL1R5cGUgL1hPYmplY3QKL1N1YnR5cGUgL0Zvcm0KL0Zvcm1UeXBlIDEKL0JCb3ggWzAuMDAgODQyLjAwIDU5NS4wMCAwLjAwXQovTWF0cml4IFsxIDAgMCAxIDAuMDAwMDAgMC4wMDAwMF0KL1Jlc291cmNlcyAKPDwvUHJvY1NldCBbL1BERiBdCj4+Ci9MZW5ndGggMjQgPj4Kc3RyZWFtCnicK1Qw0DNUMABBKJ2cyxXIpQAAOc4EhQplbmRzdHJlYW0KZW5kb2JqCjIgMCBvYmoKPDwKL1Byb2NTZXQgWy9QREYgL1RleHQgL0ltYWdlQiAvSW1hZ2VDIC9JbWFnZUldCi9Gb250IDw8Ci9GMSA3IDAgUgovRjIgOCAwIFIKL0YzIDkgMCBSCj4+Ci9YT2JqZWN0IDw8Ci9UUEwxIDEwIDAgUgo+PgovUHJvcGVydGllcyA8PC9PQzEgNSAwIFIgL09DMiA2IDAgUj4+Ci9FeHRHU3RhdGUgPDwKPj4KPj4KZW5kb2JqCjExIDAgb2JqCjw8Ci9Qcm9kdWNlciAoVENQREYgNC4yLjAwNCBcKGh0dHA6Ly93d3cudGNwZGYub3JnXCkpCj4+CmVuZG9iagoxMiAwIG9iago8PAovVHlwZSAvQ2F0YWxvZwovUGFnZXMgMSAwIFIKL09wZW5BY3Rpb24gWzMgMCBSIC9GaXRIIG51bGxdCi9QYWdlTGF5b3V0IC9TaW5nbGVQYWdlCi9QYWdlTW9kZSAvVXNlTm9uZQovVmlld2VyUHJlZmVyZW5jZXM8PAovRGlyZWN0aW9uIC9MMlIKPj4KL09DUHJvcGVydGllcyA8PC9PQ0dzIFs1IDAgUiA2IDAgUl0gL0QgPDwvT04gWzUgMCBSXSAvT0ZGIFs2IDAgUl0gL0FTIFs8PC9FdmVudCAvUHJpbnQgL09DR3MgWzUgMCBSIDYgMCBSXSAvQ2F0ZWdvcnkgWy9QcmludF0+PiA8PC9FdmVudCAvVmlldyAvT0NHcyBbNSAwIFIgNiAwIFJdIC9DYXRlZ29yeSBbL1ZpZXddPj5dPj4+Pgo+PgplbmRvYmoKeHJlZgowIDEzCjAwMDAwMDAwMDAgNjU1MzUgZiAKMDAwMDAwMDMzOSAwMDAwMCBuIAowMDAwMDAxMTQ3IDAwMDAwIG4gCjAwMDAwMDAwMDkgMDAwMDAgbiAKMDAwMDAwMDExNyAwMDAwMCBuIAowMDAwMDAwMzk2IDAwMDAwIG4gCjAwMDAwMDA1MDQgMDAwMDAgbiAKMDAwMDAwMDYxMSAwMDAwMCBuIAowMDAwMDAwNzA5IDAwMDAwIG4gCjAwMDAwMDA4MDYgMDAwMDAgbiAKMDAwMDAwMDkxMCAwMDAwMCBuIAowMDAwMDAxMzM5IDAwMDAwIG4gCjAwMDAwMDE0MTIgMDAwMDAgbiAKdHJhaWxlcgo8PAovU2l6ZSAxMwovUm9vdCAxMiAwIFIKL0luZm8gMTEgMCBSCj4+CnN0YXJ0eHJlZgoxNzY0CiUlRU9GCg==&quot;}]}" />
+                  <option name="type" value="JSON" />
+                </bodyState>
+              </option>
+              <option name="headers">
+                <list>
+                  <headerState>
+                    <option name="key" value="X-API-KEY" />
+                    <option name="value" value="quipux-key-123" />
+                  </headerState>
+                </list>
+              </option>
+              <option name="id" value="feaac2a6-28bb-4d07-bba2-4cb9fa4ff23d" />
+              <option name="method" value="POST" />
+              <option name="name" value="Draft" />
+              <option name="url" value="http://host.docker.internal:8081/servicio/documentos" />
+            </requestState>
+            <requestState>
+              <option name="body">
+                <bodyState>
+                  <option name="type" value="FORM_DATA" />
+                </bodyState>
+              </option>
+              <option name="id" value="b947f13a-35db-41b9-82ac-bd6958376eed" />
+              <option name="method" value="GET" />
+              <option name="name" value="Draft (1)" />
+              <option name="url" value="http://host.docker.internal:8081/servicio/documentos/eyJhbGciOiJIUzUxMiJ9.eyJjZWR1bGEiOiIxNjAwNTYwODcyIiwic2lzdGVtYSI6IlFVSVBVWCIsImlkcyI6Ijc3IiwiZXhwIjoxNzcyODE0OTM4fQ.TZXa3s87z7_rGDPzIox5xmx3aUe7-coKlg9syPvJAZ-B5IigbbWAOccnG3behEApgnUJf6yvv71rw7pyF0bfzA" />
+            </requestState>
+          </list>
+        </option>
+      </draftsState>
+    </option>
+    <option name="id" value="0c37a722-20e6-4903-808b-1560f01cd5f7" />
+    <option name="version" value="6" />
+  </component>
+</project>
