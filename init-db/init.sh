@@ -15,4 +15,4 @@ psql -v ON_ERROR_STOP=1 --username "$POSTGRES_USER" <<-EOSQL
 EOSQL
 
 echo "Ejecutando script en quipux_documental..."
-psql -v ON_ERROR_STOP=1 --username "$POSTGRES_USER" --dbname=quipux_documental < /docker-entrypoint-initdb.d/quipux_documental.sql
+psql -v ON_ERROR_STOP=1 --username "$POSTGRES_USER" --dbname=quipux_documental < /docker-entrypoint-initdb.d/quipux_bodega.sql

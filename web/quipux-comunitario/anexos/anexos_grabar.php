@@ -1,21 +1,21 @@
 <?php
 /**  Programa para el manejo de gestion documental, oficios, memorandos, circulares, acuerdos
-*    Desarrollado y en otros Modificado por la SubSecretaría de Informática del Ecuador
-*    Quipux    www.gestiondocumental.gov.ec
-*------------------------------------------------------------------------------
-*    This program is free software: you can redistribute it and/or modify
-*    it under the terms of the GNU Affero General Public License as
-*    published by the Free Software Foundation, either version 3 of the
-*    License, or (at your option) any later version.
-*    This program is distributed in the hope that it will be useful,
-*    but WITHOUT ANY WARRANTY; without even the implied warranty of
-*    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-*    GNU Affero General Public License for more details.
-*
-*    You should have received a copy of the GNU Affero General Public License
-*    along with this program.  If not, see http://www.gnu.org/licenses.
-*------------------------------------------------------------------------------
-**/
+ *    Desarrollado y en otros Modificado por la SubSecretaría de Informática del Ecuador
+ *    Quipux    www.gestiondocumental.gov.ec
+ *------------------------------------------------------------------------------
+ *    This program is free software: you can redistribute it and/or modify
+ *    it under the terms of the GNU Affero General Public License as
+ *    published by the Free Software Foundation, either version 3 of the
+ *    License, or (at your option) any later version.
+ *    This program is distributed in the hope that it will be useful,
+ *    but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *    GNU Affero General Public License for more details.
+ *
+ *    You should have received a copy of the GNU Affero General Public License
+ *    along with this program.  If not, see http://www.gnu.org/licenses.
+ *------------------------------------------------------------------------------
+ **/
 
 // Función que se ejecutará el finalizar la carga de archivos en la pantalla principal
 $funciones_js = " window.parent.anexos_cargar_archivo_nuevo_finalizar(); ";
@@ -49,7 +49,6 @@ for ($file=0 ; $file<10 ; ++$file ) {
         $asociar_imagen = (isset ($_POST["chk_asociar_imagen_$file"])) ? (0 + $_POST["chk_asociar_imagen_$file"]) : 0;
 
         $archivo_path = limpiar_sql($_FILES["fil_archivo_nuevo_$file"]["tmp_name"]);
-
         $archivo_tamanio = 0+$_FILES["fil_archivo_nuevo_$file"]["size"];
         $archivo_nombre = trim(limpiar_sql($_FILES["fil_archivo_nuevo_$file"]["name"]));
 
@@ -90,9 +89,7 @@ for ($file=0 ; $file<10 ; ++$file ) {
         $archivo_codigo = $radi_nume."_".str_pad(($rs->fields["NUM"]),5,"0",STR_PAD_LEFT);
 
         // Grabo el archivo en la bodega
-
         $archivo_base64 = base64_encode(file_get_contents($archivo_path));
-
         $rs_archivo = $db_bodega->query("select func_grabar_archivo(E'$archivo_nombre', E'$archivo_base64') as arch_codi");
         $archivo_arch_codi = 0+$rs_archivo->fields["ARCH_CODI"];
         if ($archivo_arch_codi == 0) {

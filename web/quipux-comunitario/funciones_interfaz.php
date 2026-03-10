@@ -26,14 +26,14 @@ function html_head ($flag_estilos=true, $flag_index=false) {
     global $ruta_raiz;
     $texto = "<head>
             <meta http-equiv='Content-Type' content='text/html; charset=UTF-8'>
-            <title>.:: Quipux - Sistema de Gesti&oacute;n Documental ::.</title>
+            <title>.:: Quidox - Sistema de Gesti&oacute;n Documental ::.</title>
             <link href='$ruta_raiz/estilos/orfeo.css' rel='stylesheet' type='text/css'>
             ";
     if ($flag_estilos) {
         $texto .= " <link href='$ruta_raiz/estilos/light_slate.css' rel='stylesheet' type='text/css'>
             <link href='$ruta_raiz/estilos/splitmenu.css' rel='stylesheet' type='text/css'>
             <link href='$ruta_raiz/estilos/template_css.css' rel='stylesheet' type='text/css'>
-            <link href='$ruta_raiz/estilos/navbar.css' rel='stylesheet' type='text/css'>
+           
             <link rel='shortcut icon' href='$ruta_raiz/imagenes/favicon.ico'>
             <link rel='stylesheet' type='text/css' href='$ruta_raiz/js/spiffyCal/spiffyCal_v2_1.css'>
             <link rel='stylesheet' type='text/css' href='$ruta_raiz/js/calendario_php/calendario_php.css'>";
@@ -116,7 +116,7 @@ function html_encabezado () {
                 <table width='100%' cellpadding='0' cellspacing='0' >
                     <tr>
                         <td width='18%'><img alt='Escudo' src='$ruta_raiz/imagenes/logo_ing2.png' height='80' width='150'></td>
-                        <td width='52%'><h2>Gobierno Nacional de la Rep&uacute;blica del Ecuador</h2></td>
+                        <td width='52%'><h2><b>Cooperativa de Ahorro y Crédito Educadores de Pastaza</b></h2></td>
                         <td  width='30%'><div id='nav-big'>
                            <ul><table align='right'>
                                 <tr><td><li class='active_menu'><a href='' class='b6' onclick='ver_ayuda()'></a></li></td></tr>

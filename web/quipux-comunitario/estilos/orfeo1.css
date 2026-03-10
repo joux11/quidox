@@ -5,7 +5,7 @@
 	line-height: 10px;
 	font-weight: bolder;
 	color: #FFFFFF;
-	background-color: 377584;
+	background-color: #377584;
 	text-indent: 5pt;
 }
 .info {
@@ -383,7 +383,7 @@ font-family:  Arial, Helvetica, sans-serif;
 
 .estiloDivPeq{
     width:100%;
-    height:200;
+    height:200%;
     overflow:Auto;
     scrollbar-face-color: #9CB6D8;
     scrollbar-shadow-color: #9CB6D8;
@@ -397,7 +397,7 @@ font-family:  Arial, Helvetica, sans-serif;
 
 .estiloDivGrd{
     width:100%;
-    height:250;
+    height:250%;
     overflow:Auto;
     scrollbar-face-color: #9CB6D8;
     scrollbar-shadow-color: #9CB6D8;
@@ -420,14 +420,14 @@ cursor: pointer;
 font-size: 11px;
 font-weight: bold;
 font-family: Arial, Helvetica, sans-serif;
-padding: 1 30px;
+padding: 130px;
 }
 
 .linkExpandido {
 background: #e3e8ec url(../iconos/menos.gif) no-repeat;
 color: #000000;
 cursor: pointer;
-padding: 1 30px;
+padding: 130px;
 font-size: 11px;
 font-weight: bold;
 font-family: Arial, Helvetica, sans-serif;
@@ -443,127 +443,9 @@ font-family: Arial, Helvetica, sans-serif;
     font-family:Arial, Helvetica, sans-serif;
     font-size:12px;
     border: thin solid #a8bac6;
-
 }
 .caja_textoSinBorde {
     font-family:Arial, Helvetica, sans-serif;
     font-size:10px;
     color:#000000;
 }
-/* Tooltip container */
- .tooltip {
-        position: relative;
-        display: inline-block;
-        border-bottom: 1px dotted black; /* If you want dots under the hoverable text */
-  }
-
-  /* Tooltip text */
-  .tooltip .tooltiptext {
-        visibility: hidden;
-        width: 350px;
-        background-color: #555;
-        color: #fff;
-        text-align: center;
-        padding: 5px 0;
-        border-radius: 6px;
-
-        /* Position the tooltip text */
-        position: absolute;
-        z-index: 1;
-        bottom: 125%;
-        left: 50%;
-        margin-left: -60px;
-
-        /* Fade in tooltip */
-        opacity: 0;
-        transition: opacity 0.3s;
-  }
-
-  /* Tooltip arrow */
-  .tooltip .tooltiptext::after {
-        content: "";
-        position: absolute;
-        top: 100%;
-        left: 50%;
-        margin-left: -5px;
-        border-width: 5px;
-        border-style: solid;
-        border-color: #555 transparent transparent transparent;
-  }
-
-  /* Show the tooltip text when you mouse over the tooltip container */
-  .tooltip:hover .tooltiptext {
-        visibility: visible;
-        opacity: 1;
-  }
-
-/*Tool Tip*/
-a.Ntooltip {
-	position: relative; /* es la posiciÃ³n normal */
-	text-decoration: none !important; /* forzar sin subrayado */
-	color:#0080C0 !important; /* forzar color del texto */
-	font-weight:bold !important; /* forzar negritas */
-	}
-	
-	a.Ntooltip:hover {
-	z-index:999; /* va a estar por encima de todo */
-	background-color:#000000; /* DEBE haber un color de fondo */
-	}
-	
-	a.Ntooltip span {
-	display: none; /* el elemento va a estar oculto */
-	}
-	
-	a.Ntooltip:hover span {
-	display: block; /* se fuerza a mostrar el bloque */
-	position: absolute; /* se fuerza a que se ubique en un lugar de la pantalla */
-	top:2em; left:2em; /* donde va a estar */
-	width:100px; /* el ancho por defecto que va a tener */
-	padding:5px; /* la separaciÃ³n entre el contenido y los bordes */
-	background-color: #FBFBEF; /* el color de fondo por defecto */
-	color: #000000; /* el color de los textos por defecto */
-	}
-	/*Tool Tip*/
-
-.Input-text  {
-  background-color: #f4f3cc;
-  color: black;
-  width: 100%;
-  height: 95%;
-  font-size: 11px;
-}
-
-
-.Input-text-Referencia  {
-	background-color: #dbdddc;
-	font-family:  Arial, Helvetica, sans-serif;
-	font-size: 10px;
-	color: #000000;
-	text-indent: 2pt;
-	height: 90%;
-  }
-
-.Input-text_transparente{
-	background-color: #ffffff;
-	font-family:Arial,Helvetica,sans-serif;
-	font-size:10px;
-	color:#000000;
-	border:transparent;
-	/*background: url(../imagenes/internas/pencil_add.png) no-repeat scroll 0px 0px;*/
-	padding-left:0px;
-	width:100%;
- }
- .caja_texto_ciud {
-    font-family:Arial, Helvetica, sans-serif;
-    font-size:12px;
-	/*border: thin solid #a8bac6;*/
-	background-color: #fbeeb0;
-	/*border: 1px solid #555;*/
-	text-indent: 2pt;
-	width: 100%;
-}
-.div_mensaje_alerta {
-	border: 1px outset rgb(243, 12, 12);
-	background-color: rgb(231, 179, 186);    
-	text-align: center;
-  }
