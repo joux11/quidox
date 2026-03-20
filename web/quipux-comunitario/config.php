@@ -91,7 +91,7 @@ $cuenta_mail_respaldo = "respaldo@informatica.gob.ec";
 $versionEstable = 25;//version de firefox menores a 17 es soportada
 $api_key_token="quipux-key-123";
 $sistema_firma="QUIPUX";
-$swEnvioArchivoFirmaConfig = "http://host.docker.internal:8080/servicio/documentos";
+$swEnvioArchivoFirmaConfig = "http://10.2.10.165:8080/servicio/documentos";
 //Determina posición tamano y ambiente Solo para ambiente de pruebas debe estar en 1
 //Posición de la firma al pie
 $centrado = 260;

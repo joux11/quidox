@@ -203,35 +203,35 @@ function refrescar_pagina(origen,cod_impresion)
     }       
    
     if(origen=="")
-    {
-	if(raditipo==1 && flag_inst_m==0)
-	{
-	/**Cambio a Memo tipo documento**/
-            for(i=0;i<document.formulario.raditipo.length;i++)
-                if(document.formulario.raditipo.options[i].value=='3')
-                {
-                    dibujar_confirm('Los Destinatarios pertenecen a su instituci&oacute;n, <br>desea cambiar su tipo de documento a Memorando?',
-                                    'cambiar_raditipo_confirm('+i+')', '');
-//                    if(confirm("Los Destinatarios pertenecen a su institución, \ndesea cambiar su tipo de documento a Memorando? ")){
-//                        document.formulario.raditipo.options[i].selected=true;
-//                        document.formulario.hidden_radi_actual.value = document.formulario.raditipo.options[i].value;
-//                    }
-//                    else return false;
-                }
+    { /*
+        if(raditipo==1 && flag_inst_m==0)
+        {
+         //Cambio a Memo tipo documento
+                for(i=0;i<document.formulario.raditipo.length;i++)
+                    if(document.formulario.raditipo.options[i].value=='3')
+                    {
+                        dibujar_confirm('Los Destinatarios pertenecen a su instituci&oacute;n, <br>desea cambiar su tipo de documento a Memorando?',
+                                        'cambiar_raditipo_confirm('+i+')', '');
+    //                    if(confirm("Los Destinatarios pertenecen a su institución, \ndesea cambiar su tipo de documento a Memorando? ")){
+    //                        document.formulario.raditipo.options[i].selected=true;
+    //                        document.formulario.hidden_radi_actual.value = document.formulario.raditipo.options[i].value;
+    //                    }
+    //                    else return false;
+                    }
         }
-	if (raditipo==3 && flag_inst==1)
-	{
-	/**Cambio a Oficio tipo documento**/
-            for(i=0;i<document.formulario.raditipo.length;i++)
-                if(document.formulario.raditipo.options[i].value=='1')
-                {
-                    dibujar_confirm('Los Destinatarios no pertenecen a su instituci&oacute;n, <br>desea cambiar su tipo de documento a Oficio?',
-                                    'cambiar_raditipo_confirm('+i+')', '');
-//                    if(confirm("Los Destinatarios no pertenecen a su institución, \ndesea cambiar su tipo de documento a Oficio? "))
-//                        document.formulario.raditipo.options[i].selected=true;
-//                    else return false;
-                }
-	}
+        if (raditipo==3 && flag_inst==1)
+        {
+        //Cambio a Oficio tipo documento
+                for(i=0;i<document.formulario.raditipo.length;i++)
+                    if(document.formulario.raditipo.options[i].value=='1')
+                    {
+                        dibujar_confirm('Los Destinatarios no pertenecen a su instituci&oacute;n, <br>desea cambiar su tipo de documento a Oficio?',
+                                        'cambiar_raditipo_confirm('+i+')', '');
+    //                    if(confirm("Los Destinatarios no pertenecen a su institución, \ndesea cambiar su tipo de documento a Oficio? "))
+    //                        document.formulario.raditipo.options[i].selected=true;
+    //                    else return false;
+                    }
+        }*/
 	if(raditipo==2 && flag_inst==1)	{
 	/**Si no selecciono un funcionario para registrar un documento externo**/
 		alert("Ningún Destinatario pertenece a su institución.\nPor favor revise la lista de destinatarios.");
@@ -1379,7 +1379,7 @@ $var_envio="ent=$ent&nurad=$nurad&textrad=$textrad&accion=$accion&carpeta=$carpe
                         $readReferencia = "readonly";                        
                 }
                 ?>
-                <input alt="Ingrese un Documento asociado" name="referencia" id="referencia" type="text" maxlength="80" size="60" class="tex_area"
+                <input alt="Ingrese un Documento asociado" name="referencia" id="referencia" type="text" maxlength="80" size="60" class="Input-text-Referencia"
                 value="<?=$referencia?>" <?=$readReferencia?> onkeyup="validaEspacio(event, this, '<?=$readReferencia?>');" onblur="quitarCaracter(this, ' ');"/>
 
                 <?php

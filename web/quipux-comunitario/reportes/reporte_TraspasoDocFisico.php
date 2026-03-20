@@ -307,8 +307,8 @@ if (isset($_GET['verrad'])){
 
      $doc_pdf = $cabecerapdf.$tituloDocumento.$informacion.$traspaso.$firmas.$piepdf;
 
-     //echo $doc_pdf;
-     enviarPdf($ruta_raiz,$area["plantilla"],$doc_pdf,$servidor_pdf);
+     echo $doc_pdf;
+     //enviarPdf($ruta_raiz,$area["plantilla"],$doc_pdf,$servidor_pdf);
 }
 
 function enviarPdf($ruta_raiz,$area,$doc_pdf,$servidor_pdf){

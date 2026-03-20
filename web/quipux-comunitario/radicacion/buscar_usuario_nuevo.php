@@ -469,6 +469,7 @@ echo '<input type="hidden" name="hidden_lista_modificada" id="hidden_lista_modif
                     $where = "and inst_codi in (select distinct inst_codi from usuarios where usua_esta=1 and usua_codi in (select usua_codi from permiso_usuario where id_permiso=9))";
                 $sql = "select distinct inst_nombre, inst_codi from institucion where inst_estado=1 and inst_codi>1 $where order by 1";
                 $rs=$db->conn->query($sql);
+
                 if($rs) {
                     print $rs->GetMenu2("buscar_inst", "0", "0:&lt;&lt; Todas las Instituciones &gt;&gt;", false,"","id='buscar_inst' class='select' onChange='buscar_depePadre()'" );
                 }
